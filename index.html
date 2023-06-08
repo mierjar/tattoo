@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Tattoo Idea Generator</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    #randomIdea {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Random Tattoo Idea Generator</h1>
+
+  <div id="randomIdea"></div>
+  <button onclick="generateRandomIdea()">Get Random Idea</button>
+
+  <script>
+    var tattooIdeas = {
+      "tattooIdeas": [
+        {
+          "id": 1,
+          "category": "Animals",
+          "ideas": [
+            "Lion roaring",
+            "Wolf howling at the moon",
+            "Eagle in flight",
+            "Butterfly on a flower",
+            "Owl perched on a branch",
+            "Snake coiled around a sword",
+            "Tiger eyes",
+            "Horse galloping",
+            "Dragon breathing fire",
+            "Koi fish swimming upstream",
+            "Hummingbird hovering",
+            "Elephant with intricate patterns",
+            "Giraffe in a whimsical style",
+            "Panda eating bamboo",
+            "Fox curled up",
+            "Leopard spots",
+            "Peacock displaying feathers",
+            "Octopus with swirling tentacles",
+            "Chameleon blending into surroundings",
+            "Raven in flight"
+          ]
+        },
+        {
+          "id": 2,
+          "category": "Nature",
+          "ideas": [
+            "Mountains and pine trees",
+            "Sunset over the ocean",
+            "Lotus flower blooming",
+            "Tree of life",
+            "Waterfall in a serene forest",
+            "Aurora borealis",
+            "Sunflower field",
+            "Rainbow over hills",
+            "Bamboo forest",
+            "Cactus in a desert",
+            "Wave crashing on rocks",
+            "Snow-capped peaks",
+            "Starry night sky",
+            "Autumn leaves in a swirling pattern",
+            "Thunderstorm with lightning",
+            "Mushrooms in a fairy tale setting",
+            "Fireflies in a moonlit garden",
+            "Ferns and fern leaves",
+            "Palm trees on a tropical island",
+            "Sand dunes in the desert"
+          ]
+        },
+        {
+          "id": 3,
+          "category": "Symbols",
+          "ideas": [
+            "Yin and yang",
+            "Om symbol",
+            "Infinity symbol",
+            "Triquetra",
+            "Hamsa hand",
+            "Anchor",
+            "Mandala",
+            "Feather",
+            "Scales of justice",
+            "Peace sign",
+            "Celtic cross",
+            "Egyptian Eye of Horus",
+            "Japanese kanji characters",
+            "Heart with wings",
+            "Crossed arrows",
+            "Roman numeral date",
+            "Pentagram",
+            "Ankh symbol",
+            "Greek mythological symbol",
+            "Chemical element symbol"
+          ]
+        },
+        {
+          "id": 4,
+          "category": "Quotes",
+          "ideas": [
+            "Carpe Diem (Seize the day)",
+            "Not all who wander are lost",
+            "Stay strong",
+            "Find your own path",
+            "Love yourself",
+            "Live, laugh, love",
+            "Dream big",
+            "Fearless",
+            "Be the change",
+            "Let it be",
+            "Create your own destiny",
+            "Embrace the journey",
+            "Live with no regrets",
+            "Stay true to yourself",
+            "Believe in miracles",
+            "Follow your heart",
+            "Never give up",
+            "Take a leap of faith",
+            "Find beauty in the chaos",
+            "Stay wild and free"
+          ]
+        },
+        {
+          "id": 5,
+          "category": "Geometric",
+          "ideas": [
+            "Geometric flower",
+            "Hexagonal pattern",
+            "Symmetrical design",
+            "Celtic knot",
+            "Diamond shape",
+            "Abstract geometric",
+            "Geometric arrow",
+            "Geometric wolf",
+            "Geometric cat",
+            "Geometric elephant",
+            "Geometric butterfly",
+            "Geometric owl",
+            "Geometric fox",
+            "Geometric tree",
+            "Geometric sun",
+            "Geometric moon",
+            "Geometric heart"
+          ]
+        },
+        {
+          "id": 6,
+          "category": "Fantasy",
+          "ideas": [
+            "Mermaid swimming",
+            "Unicorn with a flowing mane",
+            "Phoenix rising from the ashes",
+            "Fairy in a magical forest",
+            "Wizard casting a spell",
+            "Dragon and knight in battle",
+            "Elf with a bow and arrow",
+            "Centaur galloping",
+            "Griffin with majestic wings",
+            "Sorceress with a crystal ball",
+            "Dwarf with a mighty axe",
+            "Gnome in a whimsical garden",
+            "Cyclops with a single eye",
+            "Medusa with snakes for hair",
+            "Werewolf howling at the moon",
+            "Goblin lurking in shadows",
+            "Troll under a bridge",
+            "Vampire with sharp fangs",
+            "Faun playing a musical instrument",
+            "Siren luring sailors"
+          ]
+        },
+        {
+          "id": 7,
+          "category": "Kawaii/Cute",
+          "ideas": [
+            "Hello Kitty with a bow",
+            "My Melody holding a flower",
+            "Pompompurin with a pudding",
+            "Cinnamoroll with fluffy clouds",
+            "Little Twin Stars on a rainbow",
+            "Keroppi playing in a pond",
+            "Badtz-Maru with a mischievous grin",
+            "Aggretsuko rocking out on a guitar",
+            "Pusheen the Cat with a slice of pizza",
+            "Gudetama lounging on a sunny side up egg",
+            "Rilakkuma and Korilakkuma having a picnic",
+            "Chococat surrounded by chocolate treats",
+            "Tuxedosam dressed in a penguin suit",
+            "Hangyodon blowing bubbles underwater",
+            "Kiki and Lala floating on fluffy clouds",
+            "Pochacco playing fetch with a ball",
+            "Bonbonribbon with colorful ribbons",
+            "Kuromi showing off her gothic style",
+            "Spottie Dottie covered in polka dots",
+            "Sugarbunnies sharing a sweet treat"
+          ]
+        },
+        {
+          "id": 8,
+          "category": "Celestial",
+          "ideas": [
+            "Sun with a smiling face",
+            "Moon phases in a circular pattern",
+            "Star constellation with connecting lines",
+            "Galaxy in vibrant colors",
+            "Comet streaking across the sky",
+            "Solar system with planets and orbits",
+            "Shooting star with a trail",
+            "Nebula with swirling colors",
+            "Zodiac signs arranged in a circle",
+            "Astronaut floating in space",
+            "Stardust with sparkles",
+            "Saturn with its rings",
+            "Meteor shower with falling stars",
+            "Crescent moon with a face",
+            "Northern lights dancing in the sky",
+            "UFO beaming up a cow",
+            "Space rocket launching into the unknown",
+            "Starry night sky with a silhouette",
+            "Constellation of a meaningful word",
+            "Galaxy cat with cosmic fur"
+          ]
+        },
+        {
+          "id": 9,
+          "category": "Music",
+          "ideas": [
+            "Musical notes and staff",
+            "Piano keys or keyboard",
+            "Guitar with intricate details",
+            "Microphone with a music quote",
+            "Violin or cello with roses",
+            "Drum set in a dynamic pose",
+            "Trumpet or saxophone in a jazz theme",
+            "Vinyl record with a favorite song",
+            "Music-themed quotes or lyrics",
+            "Sheet music of a significant melody",
+            "Music equalizer or soundwaves",
+            "Musical instruments as a collage",
+            "Music-inspired animals or creatures",
+            "Headphones or earphones with music symbols",
+            "Music composition with personal touch",
+            "Musical heartbeat or pulse",
+            "Concert scene or music festival vibes",
+            "Mixing board or DJ turntables",
+            "Musical symbols and symbols from different cultures",
+            "Harmonious blend of music and nature"
+          ]
+        },
+        {
+          "id": 10,
+          "category": "Travel",
+          "ideas": [
+            "World map with compass",
+            "Hot air balloon in the sky",
+            "Suitcase with travel stickers",
+            "Airplane soaring among clouds",
+            "Passport and boarding pass",
+            "Adventure quote with a map",
+            "Landmarks of favorite cities",
+            "Sailing ship on the ocean",
+            "Wanderlust with mountain range",
+            "Campervan in scenic landscapes",
+            "Tropical island with palm trees",
+            "Hiking boots on a trail",
+            "Vintage camera capturing memories",
+            "Train journey through countryside",
+            "City skyline of a beloved place",
+            "Road trip with winding roads",
+            "Camping tent under the starry sky",
+            "Compass pointing the way",
+            "Open road with a sense of freedom",
+            "Globetrotter with flags and destinations"
+          ]
+        }
+      ]
+    };
+
+    function generateRandomIdea() {
+      var randomCategoryIndex = Math.floor(Math.random() * tattooIdeas.tattooIdeas.length);
+      var randomCategory = tattooIdeas.tattooIdeas[randomCategoryIndex];
+
+      var randomIdeaIndex = Math.floor(Math.random() * randomCategory.ideas.length);
+      var randomIdea = randomCategory.ideas[randomIdeaIndex];
+
+      var randomIdeaElement = document.getElementById("randomIdea");
+      randomIdeaElement.textContent = randomIdea;
+    }
+  </script>
+</body>
+</html>
